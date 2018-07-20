@@ -1,0 +1,6 @@
+.click-item {
+    display: inline;
+    float: left;
+    margin: 20px;
+    background-size: contain;
+}

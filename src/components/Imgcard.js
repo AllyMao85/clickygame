@@ -1,26 +1,22 @@
 import React, { Component } from "react";
 
-
 class Imgcard extends Component {
-    // constructor (props) {
-    //     super(props)
-    //     this.state={
-    //         shake: false
-    //     }
-    
-    // }
+   
     render () {
-        const {shake, image, handleClick} = this.props
+        const {shake, image, id, handleClick} = this.props;
+        const divStyle = {
+            backgroundImage:  `url(${image})`,
+            border: '1px solid red',
+            width: 200,
+            height: 200      
+        }
         return (
             <div role="img"
             aria-label="click item" 
             className="click-item" 
+            id={id}
             shake={shake}
-            style={{
-                backgroundImage:  `url('./assets/images/${image}')`,
-                width: 200,
-                height: 200      
-              }}
+            style={divStyle}
             onClick={handleClick}>           
             </div>
         )

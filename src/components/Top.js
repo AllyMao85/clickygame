@@ -1,16 +1,11 @@
 import React, { Component } from "react";
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
+import {   
+    Navbar,  
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem } from 'reactstrap';
+    NavLink
+  } from 'reactstrap';
   
 class Top extends Component {
    
@@ -18,18 +13,16 @@ class Top extends Component {
         return (
           <div>
             <Navbar color="light" light expand="md">
-              <NavbarBrand href="/">reactstrap</NavbarBrand>
+              <NavbarBrand href="/">Clicky Game</NavbarBrand>
               
               
                 <Nav className="ml-auto" navbar>
+                  
                   <NavItem>
-                    <NavLink href="/">Clicky Game</NavLink>
+                    <NavLink href="#">{this.props.guessCorrect? "You guessed correctly!":"You guessed wrong!"}</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink href="/">GitHub</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink href="/">Score: {this.state.score} Top score: {this.state.topScore}</NavLink>
+                    <NavLink href="#">Score: {this.props.score} Top score: {this.props.topScore}</NavLink>
                   </NavItem>
                 </Nav>
               

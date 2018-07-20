@@ -15,7 +15,8 @@ const Img = props =>
             style={{
                 backgroundImage:  `url('./assets/images/${image}')`,
                 width: 200,
-                height: 200      
+                height: 200
+      
               }}
             onClick={props.handleClick}
             >test: {i}: {image}</div>)}
