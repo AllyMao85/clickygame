@@ -11,44 +11,59 @@ import "./main.css";
         this.state = {
           score: 0,
           topScore: 0,
-          guessed: false,
+          clicked: [],
           imagesArr : ["/assets/images/img1.jpg","/assets/images/img2.jpeg","/assets/images/img3.jpg","/assets/images/img4.jpg","/assets/images/img5.jpg","/assets/images/img6.jpg","/assets/images/img7.jpg","/assets/images/img8.jpg","/assets/images/img9.jpg","/assets/images/img10.png","/assets/images/img11.png","/assets/images/img12.jpg"],
-          lostGame: false,
-          scoreHistory:[]
+          lostGame: false
+        //   scoreHistory:[]
         };
         this.handleClick = this.handleClick.bind(this);
       }
   
-      handleClick = event => {
-        event.preventDefault();
-      
+      handleClick = id => {
+        const {lostGame, score, topScore, clicked} = this.state;
+        // const nextValue = e.target.value;
+        // this.setState({ ["value" + param]: nextValue });
+        // event.preventDefault();
+        console.log(this);
+        console.log(id);
         let shuffled = this.state.imagesArr
         .map((a) => ({sort: Math.random(), value: a}))
         .sort((a, b) => a.sort - b.sort)
         .map((a) => a.value) 
-        const {guessed, lostGame, score, topScore, scoreHistory} = this.state;
+       
+        
+        let clickedArr = clicked.concat(id);
+        let guesd = clickedArr.indexOf(id);
+        console.log(guesd);
+        console.log(clickedArr);
         this.setState({
-           
-            lostGame: guessed ? true : false,
-            score: lostGame ? 0 : score + 1,
-            scoreHistory: lostGame? scoreHistory.push(score) : scoreHistory,
-            // eslint-disable-next-line
-            topScore: lostGame ? Math.max(scoreHistory.join(",")) : topScore,
-            guessed: true,
+            
+            
+            lostGame: guesd!== -1 ? true : false,
+            clicked: lostGame? [] : clickedArr,
+            score: lostGame ? 0 : score + 1,           
+            // scoreHistory: lostGame? scoreHistory.push(score) : scoreHistory,
+            // // eslint-disable-next-line
+            // topScore: lostGame ? Math.max(scoreHistory.join(",")) : topScore,
+            topScore: lostGame ? score > topScore ? score: topScore
+                               : topScore,
+            
             imagesArr: shuffled
             
           });
-
+          
+        
+          
     }
           
     render () {
-        const {imagesArr, score, topScore, guessed, lostGame} = this.state;
+        const {imagesArr, score, topScore, lostGame} = this.state;
         return (    
             <div>
             {  <Top score={score} topScore={topScore} guessCorrect={!lostGame}/>}
                <div className="container">
                   {imagesArr.map((image, i) =>
-                      <Imgcard key={i} id={i} image={image} shake={guessed.toString()} handleClick = {this.handleClick}/>
+                      <Imgcard key={i} id={i} image={image} handleClick = {()=>this.handleClick(i)}/>
                    )}
                </div>
            </div>
