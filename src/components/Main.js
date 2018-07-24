@@ -31,9 +31,9 @@ import "./main.css";
         .sort((a, b) => a.sort - b.sort)
         .map((a) => a.value) 
        
-        
+        let guesd = clicked.indexOf(id);
         let clickedArr = clicked.concat(id);
-        let guesd = clickedArr.indexOf(id);
+        
         console.log(guesd);
         console.log(clickedArr);
         this.setState({
